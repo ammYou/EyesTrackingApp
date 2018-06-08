@@ -11,11 +11,16 @@ import UIKit
 import ARKit
 
 class ViewController: UIViewController{
+    @IBOutlet public weak var preView: UIView!
     let ETL = EyesTracking()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ETL.sceneView.addSubview(blurEffectView(fromBlurStyle: .dark, frame: self.view.frame))
+        ETL.sceneView.addSubview(ETL.faceTrackingDataLabel)
+        
         self.view = ETL.sceneView
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -32,6 +37,12 @@ class ViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
 
+    func blurEffectView(fromBlurStyle style: UIBlurEffectStyle, frame: CGRect) -> UIVisualEffectView {
+        let effect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: effect)
+        blurView.frame = frame
+        return blurView
+    }
 
 }
 

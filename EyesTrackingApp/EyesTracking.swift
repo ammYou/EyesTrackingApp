@@ -13,9 +13,12 @@ import SceneKit
 
 class EyesTracking:NSObject,ARSCNViewDelegate,ARSessionDelegate{
     var sceneView = ARSCNView()
+    var faceTrackingDataLabel = UILabel()
     var session: ARSession {
         return sceneView.session
     }
+    var currentFaceAnchor: ARFaceAnchor?
+    var currentFrame: ARFrame?
     
     override init() {
         guard ARFaceTrackingConfiguration.isSupported else {
@@ -23,19 +26,32 @@ class EyesTracking:NSObject,ARSCNViewDelegate,ARSessionDelegate{
             return
         }
         
-        self.sceneView.backgroundColor = .clear
-        self.sceneView.scene = SCNScene()
-        self.sceneView.rendersContinuously = true
+        sceneView.backgroundColor = .clear
+        sceneView.scene = SCNScene()
+        sceneView.rendersContinuously = true
         
         UIApplication.shared.isIdleTimerDisabled = true //Stop auto sleep
-        self.sceneView.preferredFramesPerSecond = 64
-        self.sceneView.automaticallyUpdatesLighting = true
-        self.sceneView.autoenablesDefaultLighting = true
-        self.sceneView.showsStatistics = true
+        sceneView.preferredFramesPerSecond = 60
+        sceneView.automaticallyUpdatesLighting = true
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.showsStatistics = true
+        
+        faceTrackingDataLabel.backgroundColor = UIColor.clear
+        faceTrackingDataLabel.textColor = UIColor.white
+        faceTrackingDataLabel.tintColor = UIColor.white
+        faceTrackingDataLabel.adjustsFontSizeToFitWidth = true;
+        faceTrackingDataLabel.contentScaleFactor = 10.0
+        faceTrackingDataLabel.textAlignment = .center
+        faceTrackingDataLabel.numberOfLines = 0
+        //faceTrackingDataLabel.sizeToFit()
     }
     
     func resetTracking(){
         NSLog("Settion reset.")
+        faceTrackingDataLabel.frame = CGRect(x: 0, y: 30.0, width: sceneView.frame.width, height: sceneView.frame.height-60.0)
+        faceTrackingDataLabel.text = "Resut of face"
+        
+        print(faceTrackingDataLabel)
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true //add lighting
         configuration.worldAlignment = .gravity
@@ -48,9 +64,6 @@ class EyesTracking:NSObject,ARSCNViewDelegate,ARSessionDelegate{
         session.pause()
     }
     
-    var currentFaceAnchor: ARFaceAnchor?
-    var currentFrame: ARFrame?
-    
     func session(_ session: ARSession, didUpdate frame: ARFrame) {//update tracking
         self.currentFrame = frame
     }
@@ -61,9 +74,19 @@ class EyesTracking:NSObject,ARSCNViewDelegate,ARSessionDelegate{
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {//update face tracking
         guard let faceAnchor = anchors.first as? ARFaceAnchor else { return }
         self.currentFaceAnchor = faceAnchor
+        NSLog("-----------------------------")
+        NSLog("%@",faceAnchor.blendShapes)
+        
+        var text=""
         for i in faceAnchor.blendShapes{
-            NSLog("%@,%f",i.key.rawValue,i.value.floatValue)
+            if i.key.rawValue.contains("eye"){
+                let a = String(i.key.rawValue) + ":" + String(Float(i.value)*100) + "\n"
+                text += a
+            }
         }
+        
+        faceTrackingDataLabel.text = text
+        
     }
     
     func session(_ session: ARSession, didRemove anchors: [ARAnchor]) {//remove face
