@@ -13,6 +13,9 @@
 		75857E8120C973AC00B61DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75857E8020C973AC00B61DCB /* Assets.xcassets */; };
 		75857E8420C973AC00B61DCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75857E8220C973AC00B61DCB /* LaunchScreen.storyboard */; };
 		75857E8F20C973AC00B61DCB /* EyesTrackingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75857E8E20C973AC00B61DCB /* EyesTrackingAppTests.swift */; };
+		75857E9C20C978F400B61DCB /* EyesTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75857E9B20C978F400B61DCB /* EyesTracking.swift */; };
+		75E6BEB720CAAFF10074DC34 /* ETPreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6BEB620CAAFF10074DC34 /* ETPreView.swift */; };
+		75E6BEB820CAAFF10074DC34 /* ETPreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6BEB620CAAFF10074DC34 /* ETPreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,8 @@
 		75857E8A20C973AC00B61DCB /* EyesTrackingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EyesTrackingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75857E8E20C973AC00B61DCB /* EyesTrackingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesTrackingAppTests.swift; sourceTree = "<group>"; };
 		75857E9020C973AC00B61DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75857E9B20C978F400B61DCB /* EyesTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesTracking.swift; sourceTree = "<group>"; };
+		75E6BEB620CAAFF10074DC34 /* ETPreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETPreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +88,8 @@
 				75857E8020C973AC00B61DCB /* Assets.xcassets */,
 				75857E8220C973AC00B61DCB /* LaunchScreen.storyboard */,
 				75857E8520C973AC00B61DCB /* Info.plist */,
+				75857E9B20C978F400B61DCB /* EyesTracking.swift */,
+				75E6BEB620CAAFF10074DC34 /* ETPreView.swift */,
 			);
 			path = EyesTrackingApp;
 			sourceTree = "<group>";
@@ -198,6 +205,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				75857E7C20C973AB00B61DCB /* ViewController.swift in Sources */,
+				75E6BEB720CAAFF10074DC34 /* ETPreView.swift in Sources */,
+				75857E9C20C978F400B61DCB /* EyesTracking.swift in Sources */,
 				75857E7A20C973AB00B61DCB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75857E8F20C973AC00B61DCB /* EyesTrackingAppTests.swift in Sources */,
+				75E6BEB820CAAFF10074DC34 /* ETPreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = EyesTrackingApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = EyesTrackingApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
